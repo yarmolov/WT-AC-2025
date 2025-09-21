@@ -23,7 +23,7 @@ jobs:
           DEFAULT_BRANCH: main
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_MARKDOWN: true
-          MARKDOWN_CONFIG_FILE: /github/workspace/.markdownlint.yaml
+          MARKDOWN_CONFIG_FILE: .markdownlint.yaml
           VALIDATE_HTML: true
           VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_CSS: true

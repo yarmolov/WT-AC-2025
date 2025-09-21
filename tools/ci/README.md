@@ -9,6 +9,7 @@
 - AI‑клиенты: GitHub Models (через GITHUB_TOKEN) и MCP (`tools/ci/src/mcp-client.mjs`).
 
 ## Что проверяется
+
 - Задания: семантика HTML5 (landmarks, заголовки), наличие Flex/Grid, брейкпойнты для адаптивности.
 - Минимальные технические требования: валидность HTML (html-validate), общая корректность/лучшие практики (Lighthouse Best Practices), видимый фокус и пр.
 - Артефакты (что сдаём): наличие `doc/readme.md`, скриншоты (Lighthouse/брейкпойнты), ссылка на публикацию (GitHub Pages/Netlify/Vercel).
@@ -16,6 +17,7 @@
 - Бонусы: тёмная тема (`prefers-color-scheme`), адаптивные изображения (`<picture>`, `srcset`, `sizes`), Web Vitals‑улучшения (lazy/preload/preconnect, размеры изображений).
 
 ## Как это работает
+
 1. Триггер: PR, затрагивающий `students/**` (см. `.github/workflows/lab-ci.yml`).
 2. По git‑диффу определяется список затронутых директорий `students/<id>/task_xx`.
 3. Раннер `check-runner.mjs` динамически находит рубрику по имени работы (`task_01`, `task_02`, …) и передаёт ей управление.
@@ -51,7 +53,8 @@
 5. Подсчитайте баллы согласно весам из `tasks/task_XX/readme.md`.
 6. Обнаружьте бонусы, рассчитайте бонусные баллы (cap до +10, если политика та же).
 7. Сформируйте `report.md` и верните объект результата:
-   ```js
+
+  ```js
    return {
      student, task,
      score: Math.min(100, score), rawScore: score,
@@ -75,12 +78,13 @@
 npm i --prefix tools/ci --no-audit --no-fund
 
 # Прогон одной работы локально
-node tools/ci/src/check-runner.mjs --paths '["students/your_id/task_01"]'
+# <ваш_идентификатор> = <группа>-<№ п/п>-<SurnameName>-v<вариант> (например, AC100-1-NiasiukAndrei-2)
+node tools/ci/src/check-runner.mjs --paths '["students/<ваш_идентификатор>/task_01"]'
 
 # (опционально) MCP для локального прогона
 $env:MCP_SERVER_URL="https://your-mcp.example.com"
 $env:MCP_API_KEY="<token>"
-node tools/ci/src/check-runner.mjs --paths '["students/your_id/task_01"]'
+node tools/ci/src/check-runner.mjs --paths '["students/<ваш_идентификатор>/task_01"]'
 ```
 
 ## Секреты и переменные
@@ -92,12 +96,14 @@ node tools/ci/src/check-runner.mjs --paths '["students/your_id/task_01"]'
   - Дополнительно можно завести Variables: `GH_MODELS_MODEL` (по умолчанию `gpt-4o-mini`), `GH_MODELS_ENDPOINT` (по умолчанию `https://models.inference.ai.azure.com`).
 
 ## Траблшутинг
+
 - Lighthouse падает с ошибкой запуска Chrome: проверьте флаги `--no-sandbox` и порт (в рубриках по умолчанию используются разные порты для одновременных запусков).
 - Валидатор HTML не стартует: убедитесь, что зависимости установлены (`npm i --prefix tools/ci`).
 - Нет комментария в PR: убедитесь, что workflow имеет `pull-requests: write` и запускается на PR из форка (при необходимости используйте `pull_request_target`, учитывая риски безопасности).
 - AI не сработал: для MCP проверьте Secrets и URL; для GitHub Models убедитесь, что GITHUB_TOKEN доступен шагу (по умолчанию так и есть).
 
 ## FAQ
+
 - Можно ли менять пороги (A11Y/BP/SCORE_MIN)? — Да, меняйте `env` в `.github/workflows/lab-ci.yml`.
 - Можно ли отключить AI? — Да, просто не настраивайте MCP; GitHub Models используется только для текстовых советов, их можно закомментировать в рубрике.
 - Как добавить общий отчёт в артефакты? — Уже загружается артефакт `lab-reports` с содержимым `tools/ci/out/**`.

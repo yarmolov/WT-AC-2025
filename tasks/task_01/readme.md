@@ -31,8 +31,8 @@
 * Репозиторий с исходниками: `index.html`,  `styles.css`,  `assets/` (при наличии),   `README.md`.
 * Ссылка на публикацию (GitHub Pages/Netlify/Vercel).
 * Отчёт (в README или отдельном файле) со скриншотами:
-  + Lighthouse (вкладки Accessibility/Best Practices), 
-  + валидаторов HTML/CSS, 
+  + Lighthouse (вкладки Accessibility/Best Practices).
+  + валидаторов HTML/CSS.
   + демонстрации 3 брейкпоинтов (моб./планш./дескт.).
 * Краткое описание архитектуры вёрстки (зоны Flex/Grid, медиазапросы).
 

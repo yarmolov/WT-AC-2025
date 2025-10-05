@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CSV_PATH = ROOT / "students" / "students.csv"
 README = ROOT / "README.md"
+STUDENTS_DIR = ROOT / "students"
 
 START_MARKER = "<!-- STUDENTS_TABLE_START -->"
 END_MARKER = "<!-- STUDENTS_TABLE_END -->"
@@ -52,6 +53,14 @@ def make_md_table(rows):
         if h and h.strip().lower() in ('github username', 'github_username', 'github'):
             gh_idx = idx
             break
+    # find index of Directory and NameLatin columns
+    dir_idx = None
+    name_latin_idx = None
+    for idx, h in enumerate(header):
+        if h and h.strip().lower() in ('directory', 'dir'):
+            dir_idx = idx
+        if h and h.strip().lower() == 'namelatin':
+            name_latin_idx = idx
 
     for r in body:
         # normalize row length: pad with empty strings or truncate
@@ -89,6 +98,33 @@ def make_md_table(rows):
                     # produce markdown link
                     uname_clean = f"[{uname_clean}](https://github.com/{uname_clean})"
                 row[gh_idx] = uname_clean
+        # ensure Directory column points to ./students/{NameLatin} and create per-student README
+        if name_latin_idx is not None and name_latin_idx < len(row):
+            name_latin = row[name_latin_idx].strip()
+        else:
+            name_latin = ''
+
+        if dir_idx is not None and dir_idx < len(row):
+            # prefer NameLatin when available
+            if name_latin:
+                rel_path = f"./students/{name_latin}"
+            else:
+                # fallback to existing Directory value or empty
+                rel_path = row[dir_idx].strip() or ''
+            # create directory and README file
+            if name_latin:
+                student_dir = STUDENTS_DIR / name_latin
+                try:
+                    student_dir.mkdir(parents=True, exist_ok=True)
+                    readme_path = student_dir / 'README.md'
+                    # write README with link [dir](./students/NameLatin)
+                    readme_path.write_text(f"[dir](./students/{name_latin})\n", encoding='utf-8')
+                except Exception as e:
+                    print(f"Warning: could not create directory or README for {name_latin}: {e}")
+            # render directory as markdown link if non-empty
+            if rel_path:
+                row[dir_idx] = f"[dir]({rel_path})"
+
         out.append('| ' + ' | '.join(row) + ' |')
     return '\n'.join(out)
 

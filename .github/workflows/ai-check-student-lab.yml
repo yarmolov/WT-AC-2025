@@ -7,6 +7,10 @@ on:
         description: 'Provide [NameLatin][taskN] (e.g. [IvanovIvan][task01])'
         required: true
         type: string
+      pr_number:
+        description: 'Optional PR number to checkout (useful for manual runs)'
+        required: false
+        type: string
       model:
         description: 'GitHub Models name (default gpt5-mini)'
         required: false
@@ -32,8 +36,23 @@ jobs:
   ai-check:
     runs-on: ubuntu-latest
     steps:
+      - name: Determine PR ref
+        id: pr_ref
+        run: |
+          # If a manual pr_number was provided, checkout the repository default branch so workflow scripts (in .github/) are available.
+          # For normal events, use github.ref to preserve event context.
+          if [ -n "${{ github.event.inputs.pr_number }}" ]; then
+            # Use repository default branch 'main' to ensure .github/scripts exist for manual runs
+            echo "pr_ref=refs/heads/main" >> $GITHUB_OUTPUT
+          else
+            echo "pr_ref=${{ github.ref }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ steps.pr_ref.outputs.pr_ref }}
 
       - name: Parse input [NameLatin][taskN]
         id: parse

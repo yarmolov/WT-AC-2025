@@ -16,7 +16,7 @@ on:
         required: false
         type: string
       engine:
-        description: 'Which engine to use: github (default) or openai'
+        description: 'Which engine to use: github (default), openai (alias) or openrouter'
         required: false
         type: string
       debug:
@@ -91,8 +91,8 @@ jobs:
           DEBUG: ${{ github.event.inputs.debug }}
         run: |
           set -e
-          # Export OpenAI secret into the shell environment if provided (keeps it out of the job env mapping)
-          export OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}"
+          # Export OpenRouter/OpenAI secret into the shell environment if provided (keeps it out of the job env mapping)
+          export OPENROUTER_API_KEY="${{ secrets.OPENROUTER_API_KEY }}"
           extra=""
           # default MODEL/ENGINE/DEBUG if not provided via inputs
           if [ -z "$MODEL" ]; then MODEL='gpt5-mini'; fi

@@ -2,7 +2,6 @@ name: Validate student directory
 
 on:
   pull_request_target:
-    branches: [main]
     types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
@@ -16,6 +15,7 @@ permissions:
 
 jobs:
   check-student-dir:
+    if: github.base_ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR

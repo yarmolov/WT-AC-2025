@@ -203,6 +203,7 @@ button:focus {
   margin-left: 1rem;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 #recs li:hover {
   transform: scale(1.02);
 }

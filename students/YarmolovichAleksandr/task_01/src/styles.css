@@ -78,23 +78,46 @@ nav ul {
   gap: 1rem;
 }
 
-article,
+article {
+  background: var(--card-bg);
+  color: var(--fg);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--card-shadow);
+  transition: background 0.3s ease, color 0.3s ease,
+    box-shadow 0.3s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+article:hover {
+  transform: scale(1.02);
+}
+
+#recs {
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+#recs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 #recs li {
   background: var(--card-bg);
   color: var(--fg);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 1px 3px var(--card-shadow);
-  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s ease, color 0.3s ease,
+    box-shadow 0.3s ease, transform 0.2s ease;
+  margin-bottom: 0.5rem;
 }
 
-article {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-article:hover,
 #recs li:hover {
   transform: scale(1.02);
 }
@@ -153,22 +176,6 @@ main {
   text-align: center;
 }
 
-#recs {
-  text-align: center;
-  margin: 2rem auto;
-  max-width: 600px;
-}
-
-#recs ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#recs li {
-  margin-bottom: 0.5rem;
-}
-
 article:focus,
 #recs li:focus,
 a:focus,
@@ -178,7 +185,6 @@ button:focus {
   box-shadow: 0 0 0 4px rgb(37 99 235 / 20%);
 }
 
-/* Modern range context notation */
 @media (width <= 600px) {
   .grid-cols {
     grid-template-columns: 1fr;

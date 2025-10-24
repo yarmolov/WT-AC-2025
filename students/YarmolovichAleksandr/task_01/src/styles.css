@@ -118,10 +118,6 @@ article:hover {
   margin-bottom: 0.5rem;
 }
 
-#recs li:hover {
-  transform: scale(1.02);
-}
-
 picture img {
   width: 100%;
   height: auto;
@@ -205,4 +201,8 @@ button:focus {
 
 #theme-toggle {
   margin-left: 1rem;
+}
+
+#recs li:hover {
+  transform: scale(1.02);
 }

@@ -2,12 +2,13 @@ name: Validate student directory
 
 on:
   pull_request_target:
+    branches: [main]
     types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
       pr_number:
         description: 'Pull request number to validate (required for manual run)'
-        required: false
+        required: true
 
 permissions:
   issues: write
@@ -15,7 +16,10 @@ permissions:
 
 jobs:
   check-student-dir:
-    if: github.base_ref == 'main'
+    # Run on PRs targeting main, or manual runs when a PR number is provided
+    if: |
+      (github.event_name == 'pull_request_target' && github.event.pull_request.base.ref == 'main') ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number != '')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR

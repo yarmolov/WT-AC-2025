@@ -18,14 +18,13 @@
   --card-shadow: rgb(0 0 0 / 50%);
 }
 
+/* === Базовые стили === */
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
   background: var(--bg);
   color: var(--fg);
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 header,
@@ -36,9 +35,7 @@ article,
 footer,
 aside {
   padding: 1rem;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 h1,
@@ -52,6 +49,7 @@ input {
   color: var(--fg);
 }
 
+/* === Общие ссылки === */
 a {
   text-decoration: none;
   color: var(--accent);
@@ -63,6 +61,7 @@ a:focus {
   text-decoration: underline;
 }
 
+/* === Footer ссылки === */
 footer nav ul li a {
   text-decoration: none;
   color: var(--accent);
@@ -76,12 +75,14 @@ footer nav ul li a:focus {
   color: #1d4ed8;
 }
 
+/* === Header === */
 header {
   border-bottom: 2px solid #e2e8f0;
   text-align: center;
   position: relative;
 }
 
+/* === Навигация === */
 #main-nav {
   display: flex;
   justify-content: center;
@@ -114,6 +115,7 @@ header {
   text-decoration: underline;
 }
 
+/* === Footer nav список === */
 footer nav ul {
   list-style: none;
   padding: 0;
@@ -124,40 +126,33 @@ footer nav ul {
   gap: 1rem;
 }
 
-article,
+/* === #recs li должен быть выше других карточек === */
 #recs li {
   background: var(--card-bg);
   color: var(--fg);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 1px 3px var(--card-shadow);
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+/* === Статьи и карточки === */
+article,
+#playlist-container article ul li,
+#reviews-container article ul li {
+  background: var(--card-bg);
+  color: var(--fg);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--card-shadow);
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 article {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-#recs {
-  text-align: center;
-  margin: 2rem auto;
-  max-width: 600px;
-}
-
-#recs ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#recs li {
-  margin-bottom: 0.5rem;
 }
 
 #playlist-container article ul li,
@@ -177,9 +172,7 @@ picture img {
   margin-top: 0.5rem;
   object-fit: cover;
   display: block;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 article:hover picture img {
@@ -187,6 +180,7 @@ article:hover picture img {
   opacity: 0.95;
 }
 
+/* === Burger === */
 #burger {
   display: none;
   background: none;
@@ -196,6 +190,7 @@ article:hover picture img {
   color: var(--fg);
 }
 
+/* === Кнопки === */
 button {
   width: fit-content;
   cursor: pointer;
@@ -205,23 +200,12 @@ button {
   border-radius: 6px;
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 button:hover,
 button:focus {
   background: #1d4ed8;
-}
-
-article:focus,
-#recs li:focus,
-a:focus,
-button:focus {
-  outline: 3px solid var(--accent);
-  outline-offset: 4px;
-  box-shadow: 0 0 0 4px rgb(37 99 235 / 20%);
 }
 
 .like-btn,
@@ -245,6 +229,16 @@ button:focus {
   background: #1d4ed8;
 }
 
+article:focus,
+#recs li:focus,
+a:focus,
+button:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgb(37 99 235 / 20%);
+}
+
+/* === Main container === */
 main {
   max-width: 1200px;
   margin: auto;
@@ -269,8 +263,19 @@ main {
   text-align: center;
 }
 
-/* --- Accordion, Modal, Footer, etc. remain the same below --- */
+#recs {
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 600px;
+}
 
+#recs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* === Accordion === */
 .accordion {
   max-width: 600px;
   margin: 2rem auto;
@@ -287,9 +292,7 @@ main {
   border-radius: 8px;
   margin-bottom: 0.5rem;
   box-shadow: 0 1px 3px var(--card-shadow);
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .accordion button[aria-expanded='true'] {
@@ -315,7 +318,7 @@ main {
   box-shadow: inset 0 1px 3px var(--card-shadow);
 }
 
-/* Footer */
+/* === Footer === */
 footer {
   border-top: 2px solid #e2e8f0;
   text-align: center;
@@ -326,9 +329,13 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 #open-modal {
@@ -339,29 +346,17 @@ footer {
   color: #fff;
   border: none;
   cursor: pointer;
-  transition:
-    background 0.3s ease,
-    transform 0.2s ease;
-}
-
-#open-modal:hover {
-  background-color: #1d4ed8;
-  transform: scale(1.02);
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 #open-modal:hover,
 #open-modal:focus {
   background: #1d4ed8;
+  transform: scale(1.02);
 }
 
-footer p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-/* Responsive menu */
-@media (width <= 768px) {
+/* === Адаптив === */
+@media (max-width: 768px) {
   header {
     display: flex;
     flex-direction: column;
@@ -398,24 +393,20 @@ footer p {
     display: flex;
   }
 
+  #main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
   footer nav ul {
     flex-flow: row wrap;
     justify-content: center;
     gap: 1rem;
   }
-
-  #main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-  }
 }
 
-/* Modal */
+/* === Modal === */
 #modal {
   position: fixed;
   top: 0;
@@ -500,6 +491,7 @@ footer p {
   cursor: not-allowed;
 }
 
+/* === Reviews и Playlist контейнеры === */
 #reviews-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -518,11 +510,7 @@ footer p {
   padding: 0.75rem;
   border-radius: 8px;
   box-shadow: 0 1px 3px var(--card-shadow);
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -540,9 +528,7 @@ footer p {
   margin-top: 0.5rem;
   object-fit: cover;
   display: block;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 #reviews-container article:hover img,
@@ -551,6 +537,7 @@ footer p {
   opacity: 0.95;
 }
 
+/* === Заголовки и тексты внутри карточек === */
 #playlist-container article h3,
 #reviews-container article h3 {
   margin-bottom: 0.25rem;

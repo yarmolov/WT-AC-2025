@@ -1,12 +1,12 @@
 /* ===== Цветовые переменные ===== */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #ffffff;
+    --bg: #fff;
     --fg: #0f172a;
     --muted: #475569;
     --accent: #2563eb;
     --card-bg: #f8fafc;
-    --card-shadow: rgba(0, 0, 0, 0.1);
+    --card-shadow: rgb(0 0 0 / 10%);
   }
 }
 
@@ -16,7 +16,7 @@
   --muted: #94a3b8;
   --accent: #60a5fa;
   --card-bg: #1e293b;
-  --card-shadow: rgba(0, 0, 0, 0.5);
+  --card-shadow: rgb(0 0 0 / 50%);
 }
 
 body {
@@ -42,7 +42,8 @@ a {
   transition: color 0.3s ease;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   text-decoration: underline;
 }
 
@@ -94,13 +95,19 @@ header {
   color: var(--fg);
 }
 
-article, #recs li {
+/* ===== Элементы рекомендаций и статьи ===== */
+#recs li,
+article {
   background: var(--card-bg);
   color: var(--fg);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 1px 3px var(--card-shadow);
-  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
 }
 
 article {
@@ -109,7 +116,8 @@ article {
   justify-content: space-between;
 }
 
-article:hover, #recs li:hover {
+article:hover,
+#recs li:hover {
   transform: scale(1.02);
 }
 
@@ -140,12 +148,14 @@ button {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-button:hover, button:focus {
+button:hover,
+button:focus {
   background: #1d4ed8;
 }
 
 /* ===== Кнопки лайка и удаления ===== */
-.like-btn, .delete-btn {
+.like-btn,
+.delete-btn {
   background: var(--accent);
   color: #fff;
   border: none;
@@ -160,7 +170,8 @@ button:hover, button:focus {
   background: #ef4444;
 }
 
-.like-btn:hover, .delete-btn:hover {
+.like-btn:hover,
+.delete-btn:hover {
   background: #1d4ed8;
 }
 
@@ -181,7 +192,10 @@ main {
   align-items: stretch;
 }
 
-#pl-heading, #rev-heading, #end, #faq-heading {
+#pl-heading,
+#rev-heading,
+#end,
+#faq-heading {
   text-align: center;
 }
 
@@ -208,7 +222,7 @@ a:focus,
 button:focus {
   outline: 3px solid var(--accent);
   outline-offset: 4px;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 0 0 4px rgb(37 99 235 / 20%);
 }
 
 /* ===== Аккордеон FAQ ===== */
@@ -232,14 +246,12 @@ button:focus {
 }
 
 .accordion button[aria-expanded="true"] {
-  text-align: center;
   background: var(--accent);
   color: #fff;
 }
 
 .accordion button:hover,
 .accordion button:focus {
-  text-align: center;
   background: var(--accent);
   color: #fff;
   outline: none;
@@ -262,7 +274,7 @@ footer {
   background: var(--card-bg);
   color: var(--fg);
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   align-items: center;
   gap: 1rem;
   transition: background 0.3s ease, color 0.3s ease;
@@ -292,8 +304,8 @@ footer nav ul li a:focus {
 }
 
 #open-modal {
-  padding: 0.4rem 0.8rem; /* уменьшенные отступы */
-  font-size: 0.95rem; /* чуть меньше стандартного текста */
+  padding: 0.4rem 0.8rem;
+  font-size: 0.95rem;
   border-radius: 5px;
   background-color: var(--accent, #2563eb);
   color: #fff;
@@ -302,14 +314,10 @@ footer nav ul li a:focus {
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-#open-modal:hover {
-  background-color: #1d4ed8;
-  transform: scale(1.02);
-}
-
 #open-modal:hover,
 #open-modal:focus {
   background: #1d4ed8;
+  transform: scale(1.02);
 }
 
 footer p {
@@ -319,7 +327,7 @@ footer p {
 }
 
 /* ===== Мобильная версия ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   header {
     display: flex;
     flex-direction: column;
@@ -331,9 +339,9 @@ footer p {
   #burger {
     display: block;
     position: absolute;
-    left: .5rem;
+    left: 0.5rem;
     top: 7rem;
-    transform: translateY(-50%);  
+    transform: translateY(-50%);
     font-size: 2rem;
     background: none;
     border: none;
@@ -381,7 +389,7 @@ footer p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgb(0 0 0 / 50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -398,7 +406,7 @@ footer p {
   border-radius: 8px;
   max-width: 400px;
   width: 90%;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgb(0 0 0 / 30%);
   border: 2px solid var(--accent);
   display: flex;
   flex-direction: column;
@@ -459,6 +467,7 @@ footer p {
   cursor: not-allowed;
 }
 
+/* ===== Отзывы ===== */
 #reviews-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -472,7 +481,11 @@ footer p {
   padding: 0.75rem;
   border-radius: 8px;
   box-shadow: 0 1px 3px var(--card-shadow);
-  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

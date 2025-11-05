@@ -76,30 +76,7 @@ footer nav ul li a:focus {
   color: #1d4ed8;
 }
 
-/* === Footer nav === */
-footer nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
 /* === Main-nav === */
-#main-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-}
-
-#main-nav ul li {
-  margin: 0 1rem;
-}
-
 #main-nav ul li a {
   display: block;
   padding: 0.5rem;
@@ -122,6 +99,13 @@ footer nav ul {
   box-shadow: 0 1px 3px var(--card-shadow);
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   margin-bottom: 0.5rem;
+}
+
+/* === Hover/focus для a:focus (менее специфичные идут раньше более специфичных) === */
+a:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgb(37 99 235 / 20%);
 }
 
 /* === Header === */
@@ -225,7 +209,6 @@ button:focus {
 
 article:focus,
 #recs li:focus,
-a:focus,
 button:focus {
   outline: 3px solid var(--accent);
   outline-offset: 4px;

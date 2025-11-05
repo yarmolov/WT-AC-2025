@@ -1,12 +1,13 @@
 /* ===== Цветовые переменные ===== */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #ffffff;
+    --bg: #fff; /* Изменено: #ffffff -> #fff */
     --fg: #0f172a;
     --muted: #475569;
     --accent: #2563eb;
     --card-bg: #f8fafc;
-    --card-shadow: rgba(0, 0, 0, 0.1);
+    /* Изменено: rgba(0, 0, 0, 0.1) -> rgb(0 0 0 / 10%) */
+    --card-shadow: rgb(0 0 0 / 10%);
   }
 }
 
@@ -16,7 +17,8 @@
   --muted: #94a3b8;
   --accent: #60a5fa;
   --card-bg: #1e293b;
-  --card-shadow: rgba(0, 0, 0, 0.5);
+  /* Изменено: rgba(0, 0, 0, 0.5) -> rgb(0 0 0 / 50%) */
+  --card-shadow: rgb(0 0 0 / 50%);
 }
 
 body {
@@ -59,9 +61,29 @@ a {
   transition: color 0.3s ease;
 }
 
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+footer nav ul li a {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
 a:hover,
 a:focus {
   text-decoration: underline;
+}
+
+/* ===== Фокус ===== */
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+article:focus,
+#recs li:focus,
+a:focus,
+button:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  /* Изменено: rgba(37, 99, 235, 0.2) -> rgb(37 99 235 / 20%) */
+  box-shadow: 0 0 0 4px rgb(37 99 235 / 20%);
 }
 
 header {
@@ -70,10 +92,25 @@ header {
   position: relative;
 }
 
+/* ==============================================
+  ✅ ВОТ БЛОК, КОТОРЫЙ Я ВОССТАНОВИЛ (Line 113) 
+  ==============================================
+*/
 #main-nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
+}
+
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+footer nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -85,8 +122,68 @@ header {
   justify-content: center;
 }
 
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+article,
+#recs li {
+  background: var(--card-bg);
+  color: var(--fg);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--card-shadow);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+#playlist-container article ul li,
+#reviews-container article ul li {
+  margin-bottom: 0.15rem;
+}
+
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+article:hover,
+#recs li:hover {
+  transform: scale(1.02);
+}
+
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+picture img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  object-fit: cover;
+  display: block;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+article:hover picture img {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
 #main-nav ul li {
   margin: 0 1rem;
+}
+
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+footer nav ul li a:hover,
+footer nav ul li a:focus {
+  text-decoration: underline;
+  color: #1d4ed8;
 }
 
 #main-nav ul li a {
@@ -110,48 +207,6 @@ header {
   font-size: 2rem;
   cursor: pointer;
   color: var(--fg);
-}
-
-article,
-#recs li {
-  background: var(--card-bg);
-  color: var(--fg);
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px var(--card-shadow);
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
-}
-
-article {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-article:hover,
-#recs li:hover {
-  transform: scale(1.02);
-}
-
-picture img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  object-fit: cover;
-  display: block;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-}
-
-article:hover picture img {
-  transform: scale(1.02);
-  opacity: 0.95;
 }
 
 button {
@@ -235,16 +290,6 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* ===== Фокус ===== */
-article:focus,
-#recs li:focus,
-a:focus,
-button:focus {
-  outline: 3px solid var(--accent);
-  outline-offset: 4px;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
-}
-
 /* ===== Аккордеон FAQ ===== */
 .accordion {
   max-width: 600px;
@@ -267,7 +312,7 @@ button:focus {
     color 0.3s ease;
 }
 
-.accordion button[aria-expanded="true"] {
+.accordion button[aria-expanded='true'] {
   text-align: center;
   background: var(--accent);
   color: #fff;
@@ -306,28 +351,7 @@ footer {
     color 0.3s ease;
 }
 
-footer nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-footer nav ul li a {
-  text-decoration: none;
-  color: var(--accent);
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-footer nav ul li a:hover,
-footer nav ul li a:focus {
-  text-decoration: underline;
-  color: #1d4ed8;
-}
+/* Стили для ul и li a перемещены ВЫШЕ для исправления no-descending-specificity */
 
 #open-modal {
   padding: 0.4rem 0.8rem; /* уменьшенные отступы */
@@ -359,7 +383,8 @@ footer p {
 }
 
 /* ===== Мобильная версия ===== */
-@media (max-width: 768px) {
+/* Изменено: (max-width: 768px) -> (width <= 768px) */
+@media (width <= 768px) {
   header {
     display: flex;
     flex-direction: column;
@@ -396,6 +421,14 @@ footer p {
     display: flex;
   }
 
+  /* Блок ПЕРЕМЕЩЕН ВЫШЕ (no-descending-specificity) */
+  footer nav ul {
+    /* Изменено: flex-direction и flex-wrap заменены на flex-flow */
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
   #main-nav ul {
     list-style: none;
     margin: 0;
@@ -404,13 +437,6 @@ footer p {
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
-  }
-
-  footer nav ul {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
   }
 }
 
@@ -421,7 +447,8 @@ footer p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  /* Изменено: rgba(0, 0, 0, 0.5) -> rgb(0 0 0 / 50%) */
+  background: rgb(0 0 0 / 50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -438,7 +465,8 @@ footer p {
   border-radius: 8px;
   max-width: 400px;
   width: 90%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  /* Изменено: rgba(0, 0, 0, 0.3) -> rgb(0 0 0 / 30%) */
+  box-shadow: 0 5px 15px rgb(0 0 0 / 30%);
   border: 2px solid var(--accent);
   display: flex;
   flex-direction: column;
@@ -506,6 +534,12 @@ footer p {
   align-items: stretch;
 }
 
+/* Блок ПЕРЕМЕЩЕН (no-descending-specificity) */
+#playlist-container article,
+#reviews-container article {
+  padding: 0.75rem;
+}
+
 #reviews-container article {
   background: var(--card-bg);
   color: var(--fg);
@@ -526,8 +560,9 @@ footer p {
   transform: scale(1.02);
 }
 
-#reviews-container picture img,
-#reviews-container img {
+/* Изменен порядок селекторов (no-descending-specificity) */
+#reviews-container img,
+#reviews-container picture img {
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -539,15 +574,11 @@ footer p {
     opacity 0.3s ease;
 }
 
-#reviews-container article:hover picture img,
-#reviews-container article:hover img {
+/* Изменен порядок селекторов (no-descending-specificity) */
+#reviews-container article:hover img,
+#reviews-container article:hover picture img {
   transform: scale(1.02);
   opacity: 0.95;
-}
-
-#playlist-container article,
-#reviews-container article {
-  padding: 0.75rem;
 }
 
 #playlist-container article h3,
@@ -563,7 +594,4 @@ footer p {
   line-height: 1.3;
 }
 
-#playlist-container article ul li,
-#reviews-container article ul li {
-  margin-bottom: 0.15rem;
-}
+/* Стили для li перемещены ВЫШЕ (no-descending-specificity) */

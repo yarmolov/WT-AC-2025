@@ -58,11 +58,22 @@ a {
   transition: color 0.3s ease;
 }
 
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
 footer nav ul li a {
   text-decoration: none;
   color: var(--accent);
   font-weight: 500;
   transition: color 0.3s ease;
+}
+
+footer nav ul li a:hover,
+footer nav ul li a:focus {
+  text-decoration: underline;
+  color: #1d4ed8;
 }
 
 header {
@@ -78,6 +89,31 @@ header {
   gap: 1rem;
 }
 
+#main-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#main-nav ul li {
+  margin: 0 1rem;
+}
+
+#main-nav ul li a {
+  display: block;
+  padding: 0.5rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#main-nav ul li a:hover,
+#main-nav ul li a:focus {
+  text-decoration: underline;
+}
+
 footer nav ul {
   list-style: none;
   padding: 0;
@@ -86,14 +122,6 @@ footer nav ul {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-}
-
-#main-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
 }
 
 article,
@@ -114,6 +142,22 @@ article {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+#recs {
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+#recs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#recs li {
+  margin-bottom: 0.5rem;
 }
 
 #playlist-container article ul li,
@@ -141,29 +185,6 @@ picture img {
 article:hover picture img {
   transform: scale(1.02);
   opacity: 0.95;
-}
-
-#main-nav ul li {
-  margin: 0 1rem;
-}
-
-footer nav ul li a:hover,
-footer nav ul li a:focus {
-  text-decoration: underline;
-  color: #1d4ed8;
-}
-
-#main-nav ul li a {
-  display: block;
-  padding: 0.5rem;
-  color: var(--accent);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-#main-nav ul li a:hover,
-#main-nav ul li a:focus {
-  text-decoration: underline;
 }
 
 #burger {
@@ -248,21 +269,7 @@ main {
   text-align: center;
 }
 
-#recs {
-  text-align: center;
-  margin: 2rem auto;
-  max-width: 600px;
-}
-
-#recs ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#recs li {
-  margin-bottom: 0.5rem;
-}
+/* --- Accordion, Modal, Footer, etc. remain the same below --- */
 
 .accordion {
   max-width: 600px;
@@ -308,6 +315,7 @@ main {
   box-shadow: inset 0 1px 3px var(--card-shadow);
 }
 
+/* Footer */
 footer {
   border-top: 2px solid #e2e8f0;
   text-align: center;
@@ -352,6 +360,7 @@ footer p {
   font-size: 0.9rem;
 }
 
+/* Responsive menu */
 @media (width <= 768px) {
   header {
     display: flex;
@@ -406,6 +415,7 @@ footer p {
   }
 }
 
+/* Modal */
 #modal {
   position: fixed;
   top: 0;
@@ -552,9 +562,4 @@ footer p {
 #reviews-container article ul {
   margin: 0.25rem 0;
   line-height: 1.3;
-}
-
-a:hover,
-a:focus {
-  text-decoration: underline;
 }

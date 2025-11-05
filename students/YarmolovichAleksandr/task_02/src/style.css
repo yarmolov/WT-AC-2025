@@ -19,6 +19,7 @@
   --card-shadow: rgb(0 0 0 / 50%);
 }
 
+/* ===== Базовые элементы ===== */
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
@@ -47,6 +48,33 @@ a:focus {
   text-decoration: underline;
 }
 
+/* ===== Рекомендации и карточки ===== */
+#recs li,
+article {
+  background: var(--card-bg);
+  color: var(--fg);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--card-shadow);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+article:hover,
+#recs li:hover {
+  transform: scale(1.02);
+}
+
+/* ===== Навигация ===== */
 header {
   border-bottom: 2px solid #e2e8f0;
   text-align: center;
@@ -95,33 +123,10 @@ header {
   color: var(--fg);
 }
 
-/* ===== Элементы рекомендаций и статьи ===== */
-#recs li,
-article {
-  background: var(--card-bg);
-  color: var(--fg);
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px var(--card-shadow);
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
-}
-
-article {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-article:hover,
-#recs li:hover {
-  transform: scale(1.02);
-}
-
-picture img {
+/* ===== Изображения ===== */
+picture img,
+#reviews-container picture img,
+#reviews-container img {
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -131,21 +136,29 @@ picture img {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-article:hover picture img {
+article:hover picture img,
+#reviews-container article:hover picture img,
+#reviews-container article:hover img {
   transform: scale(1.02);
   opacity: 0.95;
 }
 
-button {
-  width: fit-content;
+/* ===== Кнопки ===== */
+button,
+.like-btn,
+.delete-btn {
   cursor: pointer;
-  background: var(--accent);
-  color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 0.5rem 1rem;
   font-size: 0.9rem;
   transition: background 0.3s ease, color 0.3s ease;
+}
+
+button {
+  width: fit-content;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem 1rem;
 }
 
 button:hover,
@@ -153,17 +166,11 @@ button:focus {
   background: #1d4ed8;
 }
 
-/* ===== Кнопки лайка и удаления ===== */
 .like-btn,
 .delete-btn {
   background: var(--accent);
   color: #fff;
-  border: none;
-  border-radius: 6px;
   padding: 0.5rem 1rem;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background 0.3s ease;
 }
 
 .like-btn.liked {
@@ -175,6 +182,7 @@ button:focus {
   background: #1d4ed8;
 }
 
+/* ===== Основной контент ===== */
 main {
   max-width: 1200px;
   margin: auto;
@@ -185,20 +193,7 @@ main {
   gap: 1rem;
 }
 
-#playlist-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  align-items: stretch;
-}
-
-#pl-heading,
-#rev-heading,
-#end,
-#faq-heading {
-  text-align: center;
-}
-
+/* ===== Рекомендации ===== */
 #recs {
   text-align: center;
   margin: 2rem auto;
@@ -245,11 +240,7 @@ button:focus {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-.accordion button[aria-expanded="true"] {
-  background: var(--accent);
-  color: #fff;
-}
-
+.accordion button[aria-expanded="true"],
 .accordion button:hover,
 .accordion button:focus {
   background: var(--accent);
@@ -307,7 +298,7 @@ footer nav ul li a:focus {
   padding: 0.4rem 0.8rem;
   font-size: 0.95rem;
   border-radius: 5px;
-  background-color: var(--accent, #2563eb);
+  background-color: var(--accent);
   color: #fff;
   border: none;
   cursor: pointer;
@@ -357,7 +348,6 @@ footer p {
     background: transparent;
     box-shadow: none;
     text-align: center;
-    position: relative;
   }
 
   #main-nav:not([hidden]) {
@@ -493,23 +483,6 @@ footer p {
 
 #reviews-container article:hover {
   transform: scale(1.02);
-}
-
-#reviews-container picture img,
-#reviews-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-#reviews-container article:hover picture img,
-#reviews-container article:hover img {
-  transform: scale(1.02);
-  opacity: 0.95;
 }
 
 #playlist-container article,

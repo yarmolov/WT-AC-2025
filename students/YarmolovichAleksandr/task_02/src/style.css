@@ -48,30 +48,14 @@ a:focus {
   text-decoration: underline;
 }
 
-/* ===== Рекомендации и карточки ===== */
-#recs li,
-article {
-  background: var(--card-bg);
-  color: var(--fg);
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px var(--card-shadow);
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
-}
-
-article {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-article:hover,
-#recs li:hover {
-  transform: scale(1.02);
+/* ===== Фокус ===== */
+a:focus,
+button:focus,
+article:focus,
+#recs li:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgb(37 99 235 / 20%);
 }
 
 /* ===== Навигация ===== */
@@ -123,10 +107,36 @@ header {
   color: var(--fg);
 }
 
+/* ===== Рекомендации и карточки ===== */
+#recs li,
+article {
+  background: var(--card-bg);
+  color: var(--fg);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--card-shadow);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#recs li:hover,
+article:hover {
+  transform: scale(1.02);
+}
+
 /* ===== Изображения ===== */
 picture img,
-#reviews-container picture img,
-#reviews-container img {
+#reviews-container img,
+#reviews-container picture img {
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -137,8 +147,8 @@ picture img,
 }
 
 article:hover picture img,
-#reviews-container article:hover picture img,
-#reviews-container article:hover img {
+#reviews-container article:hover img,
+#reviews-container article:hover picture img {
   transform: scale(1.02);
   opacity: 0.95;
 }
@@ -210,16 +220,6 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* ===== Фокус ===== */
-article:focus,
-#recs li:focus,
-a:focus,
-button:focus {
-  outline: 3px solid var(--accent);
-  outline-offset: 4px;
-  box-shadow: 0 0 0 4px rgb(37 99 235 / 20%);
-}
-
 /* ===== Аккордеон FAQ ===== */
 .accordion {
   max-width: 600px;
@@ -265,7 +265,7 @@ footer {
   background: var(--card-bg);
   color: var(--fg);
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   gap: 1rem;
   transition: background 0.3s ease, color 0.3s ease;
@@ -458,6 +458,29 @@ footer p {
 }
 
 /* ===== Отзывы ===== */
+#playlist-container article,
+#reviews-container article {
+  padding: 0.75rem;
+}
+
+#playlist-container article h3,
+#reviews-container article h3 {
+  margin-bottom: 0.25rem;
+}
+
+#playlist-container article p,
+#reviews-container article p,
+#playlist-container article ul,
+#reviews-container article ul {
+  margin: 0.25rem 0;
+  line-height: 1.3;
+}
+
+#playlist-container article ul li,
+#reviews-container article ul li {
+  margin-bottom: 0.15rem;
+}
+
 #reviews-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -483,27 +506,4 @@ footer p {
 
 #reviews-container article:hover {
   transform: scale(1.02);
-}
-
-#playlist-container article,
-#reviews-container article {
-  padding: 0.75rem;
-}
-
-#playlist-container article h3,
-#reviews-container article h3 {
-  margin-bottom: 0.25rem;
-}
-
-#playlist-container article p,
-#reviews-container article p,
-#playlist-container article ul,
-#reviews-container article ul {
-  margin: 0.25rem 0;
-  line-height: 1.3;
-}
-
-#playlist-container article ul li,
-#reviews-container article ul li {
-  margin-bottom: 0.15rem;
 }

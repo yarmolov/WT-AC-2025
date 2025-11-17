@@ -5,7 +5,7 @@
   --accent: #2b6cb0;
   --danger: #e53e3e;
   --success: #2f855a;
-  --shadow: 0 6px 18px rgba(12, 18, 31, 0.06);
+  --shadow: 0 6px 18px rgba(12 18 31 / 6%);
 
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
@@ -46,6 +46,11 @@ body {
   z-index: 10;
 }
 
+nav a {
+  margin-left: 8px;
+  text-decoration: none;
+}
+
 .brand {
   margin: 0;
   font-size: 18px;
@@ -53,11 +58,6 @@ body {
 
 .brand a {
   color: var(--accent);
-  text-decoration: none;
-}
-
-nav a {
-  margin-left: 8px;
   text-decoration: none;
 }
 
@@ -102,7 +102,7 @@ nav a {
 
 .album-title {
   font-weight: 600;
-  margin: 0 0 6px 0;
+  margin: 0 0 6px;
 }
 
 .album-meta {
@@ -125,12 +125,12 @@ nav a {
 }
 
 .icon-btn.danger {
-  border-color: rgba(229, 62, 62, 0.12);
+  border-color: rgba(229 62 62 / 12%);
   color: var(--danger);
 }
 
 .icon-btn.primary {
-  border-color: rgba(43, 108, 176, 0.12);
+  border-color: rgba(43 108 176 / 12%);
   color: var(--accent);
 }
 
@@ -195,12 +195,12 @@ textarea {
 .error {
   padding: 16px;
   background: #fff3f2;
-  border: 1px solid rgba(229, 62, 62, 0.08);
+  border: 1px solid rgba(229 62 62 / 8%);
   color: var(--danger);
   border-radius: 10px;
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .header-row {
     flex-direction: column;
     align-items: flex-start;
